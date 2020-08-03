@@ -19,12 +19,12 @@ function pinMatch() {
         alert('Please enter pin');
     }
     else if (generatePin == userPin) {
-        document.getElementById('matched').style.display = 'block';
-        document.getElementById('not-matched').style.display = 'none';
+        document.getElementById('match').style.display = 'block';
+        document.getElementById('not-match').style.display = 'none';
     }
     else {
-        document.getElementById('matched').style.display = 'none';
-        document.getElementById('not-matched').style.display = 'block';
+        document.getElementById('match').style.display = 'none';
+        document.getElementById('not-match').style.display = 'block';
 
         let tryChance = document.getElementById('try-left').innerText -= 1;
         if (tryChance == 0) {
