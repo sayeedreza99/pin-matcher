@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function generatePin() {
+            let randomNum = Math.random() * 1000;
+            let randomPin = Math.ceil(randomNum);
+            if (randomPin < 1000) {
+                randomPin = randomPin + 1000;
+            }
+            document.getElementById('generate-pin').value = randomPin;
+        }
+        function insert(num) {
+            document.getElementById('pin-display').value += num;
+        }
+        function pinMatch() {
+            let generatePin = document.getElementById('generate-pin').value;
+            let userPin = document.getElementById('pin-display').value;
+            if (generatePin == "") {
+                alert("Please, click 'Generate pin' button");
+            }
+            else if (userPin == "") {
+                alert('Please enter pin');
+            }
+            else if (generatePin == userPin) {
+                document.getElementById('match').style.display = 'block';
+                document.getElementById('not-match').style.display = 'none';
+            }
+            else {
+                document.getElementById('match').style.display = 'none';
+                document.getElementById('not-match').style.display = 'block';
+            }
+        }
+        function clean() {
+            document.getElementById('pin-display').value = "";
+        }
+        function backspace() {
+            let given = document.getElementById('pin-display').value;
+            document.getElementById('pin-display').value = given.substring(0, given.length - 1);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="generate-pin" class="form-control" type="text">
+                    <button onclick="generatePin()" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input id="pin-display" class="form-control" type="text">
+                    <div class="numbers">
+                        <div class="calc-body">
+                            <div class="calc-button-row">
+                                <div class="button" onclick="insert(7)">7</div>
+                                <div class="button" onclick="insert(8)">8</div>
+                                <div class="button" onclick="insert(9)">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button" onclick="insert(4)">4</div>
+                                <div class="button" onclick="insert(5)">5</div>
+                                <div class="button" onclick="insert(6)">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button" onclick="insert(1)">1</div>
+                                <div class="button" onclick="insert(2)">2</div>
+                                <div class="button" onclick="insert(3)">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button" onclick="backspace()">
+                                    <</div> <div class="button" onclick="insert(0)">0
+                                </div>
+                                <div class="button" onclick="clean()">C</div>
+                            </div>
+                            <div>
+                                <button id="submit" type="submit" class="submit-btn"
+                                    onclick="pinMatch()">Submit</button>
+                                <p id="try-left" class="action-left">3 try left</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="notify-section">
+                <p id="not-match" class="notify">❌ Pin Didn't Match, Please try again</p>
+                <p id="match" class="notify">✅ Pin Matched... Secret door is opening for you</p>
+            </div>
+        </div>
+</body>
+
+</html>
