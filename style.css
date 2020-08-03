@@ -105,5 +105,5 @@ color: #E0B612;
     margin-top: 10px;
 }
 #not-matched, #matched{
-    display: none;
+    display: 'none';
 }
